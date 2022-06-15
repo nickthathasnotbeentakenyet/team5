@@ -3,11 +3,14 @@ function getLocalStorage(key) {
 }
 
 function getCartContents() {
-  let markup = "";
+  // let markup = "";
   const cartItems = getLocalStorage("so-cart");
-  const htmlItems = cartItems.map((item) => renderCartItem(item));
+  // NOTE: object converted into an array and only then mapped
+  const itemList = Array.from(cartItems);
+  const htmlItems = Object.values(itemList).map((item) => renderCartItem(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  // document.querySelector(".product-list").innerHTML = renderCartItem(cartItems);
+  // FIXME: two of the tent images have wrong names at thus they can't be displayed
+  document.querySelector(".product-list").innerHTML = renderCartItem(cartItems);
 }
 
 function renderCartItem(item) {
@@ -25,7 +28,7 @@ function renderCartItem(item) {
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
 </li>`;
-  console.log(newItem);
+  // console.log(newItem);
   return newItem;
 }
 
