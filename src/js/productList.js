@@ -1,3 +1,5 @@
+import { renderListWithTemplate } from "./utils";
+
 export default class ProductList {
   constructor(category, dataSource, listElement) {
     // We passed in this information to make our class as reusable as possible.
@@ -11,4 +13,16 @@ export default class ProductList {
     const list = await this.dataSource.getData();
     // render the list
   }
+  renderList(list) {
+
+    this.listElement.innerHTML = "";
+    const template = document.getElementById("product-card-template");
+    renderListWithTemplate(template, this.listElement, list, this.prepareTemplate);
+  }
+  prepareTemplate(template, product) {
+
+    template.querySelector("a").href += product.Id;
+    return template;
+  }
 }
+

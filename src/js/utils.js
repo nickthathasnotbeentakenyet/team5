@@ -20,6 +20,16 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
+export function renderListWithTemplate(template, parentElement, list, callback) {
+
+  list.forEach(product => {
+    const clone = template.content.cloneNode(true);
+    const hydratedTemplate = callback(clone, product);
+    // insert the actual details of the current product into the template
+    this.listElement.appendChild(hydratedTemplate);
+  })
+}
+
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
