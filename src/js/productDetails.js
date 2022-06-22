@@ -23,8 +23,6 @@ export default class ProductDetails {
       cartContents = [];
     }
     // then add the current product to the list
-    // NOTE: Again, problem with 'not a function'
-    cartContents = Array.from(cartContents);
     cartContents.push(this.product);
     setLocalStorage("so-cart", cartContents);
   }
