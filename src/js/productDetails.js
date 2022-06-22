@@ -1,5 +1,6 @@
-import { setLocalStorage } from "./utils.js";
+import { setLocalStorage, getLocalStorage, loadHeaderFooter } from "./utils.js";
 
+loadHeaderFooter();
 export default class ProductDetails {
   constructor(productId, dataSource) {
     this.productId = productId;
@@ -15,7 +16,17 @@ export default class ProductDetails {
       .addEventListener("click", this.addToCart.bind(this));
   }
   addToCart() {
-    setLocalStorage("so-cart", this.product);
+    // to fix the cart we need to get anything that is in the cart already.
+    let cartContents = getLocalStorage("so-cart");
+    //check to see if there was anything there
+    if (!cartContents) {
+      cartContents = [];
+    }
+    // then add the current product to the list
+    // NOTE: Again, problem with 'not a function'
+    cartContents = Array.from(cartContents);
+    cartContents.push(this.product);
+    setLocalStorage("so-cart", cartContents);
   }
   renderProductDetails() {
     return `<section class="product-detail"> <h3>${this.product.Brand.Name}</h3>
