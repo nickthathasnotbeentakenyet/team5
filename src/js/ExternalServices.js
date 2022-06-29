@@ -1,5 +1,6 @@
 const baseURL = "http://157.201.228.93:2992/";
-function convertToJson(res) {
+
+async function convertToJson(res) {
   if (res.ok) {
     return res.json();
   } else {
@@ -7,7 +8,7 @@ function convertToJson(res) {
   }
 }
 
-export default class ProductData {
+export default class ExternalServices {
   constructor() {
     //Using the API means we don't need to tie the dataSource to a specific category anymore. So we can remove this in the constructor.
     // this.category = category;

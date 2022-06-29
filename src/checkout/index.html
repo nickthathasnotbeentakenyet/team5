@@ -10,8 +10,45 @@
   <body>
     <header class="divider" id="main-header"></header>
     <main class="divider">
-      <section class="products">
         <h2>Review & Place your Order</h2>
+        <section class="checkout-form"></section>
+        <form  name="checkout">
+            <fieldset>
+                <legend>Shipping</legend>
+                <div class="checkout-info">
+                    <label for="fname">First Name</label>
+                    <input name="fname" required />
+                    <label for="lname">Last Name</label>
+                    <input name="lname" required />
+                    <label for="street">Street</label>
+                    <input name="street" required />
+                    <label for="city">City</label>
+                    <input name="city" required />
+                    <label for="state">State</label>
+                    <input name="state" required />
+                    <label for="zip">Zip</label>
+                    <input name="zip" id="zip" required />
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div class="checkout-payment">
+                    <legend>Payment</legend>
+                    <label for="cnumber">Card number</label>
+                    <input name="cnumber" required />
+                    <label for="expiration">Expiration</label>
+                    <input name="expiration" required />
+                    <label for="scode">Security Code</label>
+                    <input name="scode" required />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="chechout-summary">
+                </div>
+            </fieldset>
+
+            <button id="c-Submit" type="submit">Checkout</button>
+        </form>
       </section>
     </main>
     <footer id="main-footer"></footer>
