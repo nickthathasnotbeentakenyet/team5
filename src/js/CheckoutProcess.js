@@ -1,4 +1,31 @@
 import { getLocalStorage } from "./utils.js";
+import ExternalServices from "./ExternalServices.js";
+
+const services = new ExternalServices();
+// takes a form element and returns an object where the key is the "name" of the form input.
+function formDataToJSON(formElement) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
+}
+
+function packageItems(items) {
+  const simplifiedItems = items.map((item) => {
+    console.log(item);
+    return {
+      id: item.Id,
+      price: item.FinalPrice,
+      name: item.Name,
+      quantity: 1,
+    };
+  });
+  return simplifiedItems;
+}
 
 export default class CheckoutProcess {
   constructor(key, outputSelector) {
@@ -15,15 +42,16 @@ export default class CheckoutProcess {
     this.calculateItemSummary();
   }
   calculateItemSummary() {
-    // calculate and display the total amount of the items in the cart, and the number of items.
-  }
-  calculateOrdertotal() {
-    // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
-
-    // display the totals.
-    this.displayOrderTotals();
-  }
-  displayOrderTotals() {
-    // once the totals are all calculated display them in the order summary page
+    const summaryElement = document.querySelector(
+      this.outputSelector + " #cartTotal"
+    );
+    const itemNumElement = document.querySelector(
+      this.outputSelector + " #num-items"
+    );
+    itemNumElement.innerText = this.list.length;
+    // calculate the total of all the items in the cart
+    const amounts = this.list.map((item) => item.FinalPrice);
+    this.itemTotal = amounts.reduce((sum, item) => sum + item);
+    summaryElement.innerText = "$" + this.itemTotal;
   }
 }
