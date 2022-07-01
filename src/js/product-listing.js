@@ -1,5 +1,5 @@
 import ExternalServices from "./ExternalServices.js";
-import ProductData from "./productData.js";
+// import ProductData from "./productData.js";
 import ProductList from "./productList.js";
 import { loadHeaderFooter, getParam } from "./utils.js";
 
