@@ -95,4 +95,7 @@ export default class CheckoutProcess {
       console.log(err);
     }
   }
+  async cartSuccess() {
+    const formElement = document.forms["success"];
+  }
 }
