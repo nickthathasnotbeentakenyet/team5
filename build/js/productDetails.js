@@ -1,29 +1,34 @@
-var a = (c, r, d) =>
-  new Promise((e, s) => {
-    var u = (t) => {
+var s = (i, t, r) =>
+  new Promise((e, c) => {
+    var u = (d) => {
         try {
-          i(d.next(t));
-        } catch (o) {
-          s(o);
+          o(r.next(d));
+        } catch (a) {
+          c(a);
         }
       },
-      p = (t) => {
+      p = (d) => {
         try {
-          i(d.throw(t));
-        } catch (o) {
-          s(o);
+          o(r.throw(d));
+        } catch (a) {
+          c(a);
         }
       },
-      i = (t) => (t.done ? e(t.value) : Promise.resolve(t.value).then(u, p));
-    i((d = d.apply(c, r)).next());
+      o = (d) => (d.done ? e(d.value) : Promise.resolve(d.value).then(u, p));
+    o((r = r.apply(i, t)).next());
   });
-import { setLocalStorage as l } from "./utils.js";
-export default class n {
-  constructor(r, d) {
-    (this.productId = r), (this.product = {}), (this.dataSource = d);
+import {
+  setLocalStorage as l,
+  getLocalStorage as n,
+  loadHeaderFooter as h,
+} from "./utils.js";
+h();
+export default class m {
+  constructor(t, r) {
+    (this.productId = t), (this.product = {}), (this.dataSource = r);
   }
   init() {
-    return a(this, null, function* () {
+    return s(this, null, function* () {
       (this.product = yield this.dataSource.findProductById(this.productId)),
         (document.querySelector(
           "main"
@@ -34,14 +39,15 @@ export default class n {
     });
   }
   addToCart() {
-    l("so-cart", this.product);
+    let t = n("so-cart");
+    t || (t = []), t.push(this.product), l("so-cart", t);
   }
   renderProductDetails() {
     return `<section class="product-detail"> <h3>${this.product.Brand.Name}</h3>
     <h2 class="divider">${this.product.NameWithoutBrand}</h2>
     <img
       class="divider"
-      src="${this.product.Image}"
+      src="${this.product.Images.PrimaryLarge}"
       alt="${this.product.NameWithoutBrand}"
     />
     <p class="product-card__price">$${this.product.FinalPrice}</p>

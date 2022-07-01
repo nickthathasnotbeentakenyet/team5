@@ -24,14 +24,16 @@ export default class u {
   }
   init() {
     return o(this, null, function* () {
-      const e = yield this.dataSource.getData();
-      this.renderList(e);
+      const e = yield this.dataSource.getData(this.category);
+      console.log(e),
+        this.renderList(e),
+        (document.querySelector(".title").innerHTML = this.category);
     });
   }
   prepareTemplate(e, t) {
     return (
       (e.querySelector("a").href += t.Id),
-      (e.querySelector("img").src = t.Image),
+      (e.querySelector("img").src = t.Images.PrimaryMedium),
       (e.querySelector("img").alt += t.Name),
       (e.querySelector(".card__brand").textContent = t.Brand.Name),
       (e.querySelector(".card__name").textContent = t.NameWithoutBrand),
