@@ -23,8 +23,8 @@ export default class ProductDetails {
       cartContents = [];
     }
     // then add the current product to the list
-    let newCartContent = Array.from(cartContents);
-    newCartContent.push(this.product);
+    // alert("Your items were added");
+    cartContents.push(this.product);
     setLocalStorage("so-cart", cartContents);
   }
   renderProductDetails() {
