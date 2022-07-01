@@ -79,12 +79,16 @@ export default class CheckoutProcess {
     const json = formDataToJSON(formElement);
     // add totals, and item details
     json.orderDate = new Date();
-    json.orderTotal = this.orderTotal;
-    json.tax = this.tax;
-    json.shipping = this.shipping;
-    json.items = packageItems(this.list);
+    // json.orderTotal = this.orderTotal;
+    // json.tax = this.tax;
+    // json.shipping = this.shipping;
+    // json.items = packageItems(this.list);
     console.log(json);
     try {
+      json.orderTotal = this.orderTotal;
+      json.tax = this.tax;
+      json.shipping = this.shipping;
+      json.items = packageItems(this.list);
       const res = await services.checkout(json);
       console.log(res);
     } catch (err) {
