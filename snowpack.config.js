@@ -3,7 +3,7 @@ module.exports = {
     // ['@snowpack/plugin-sass' ],
   ],
   mount: {
-    src: "/",
+    src: "/wdd330/team5/",
   },
   buildOptions: {
     out: "build",
