@@ -1,5 +1,1 @@
-import { loadHeaderFooter as t } from "./utils.js";
-import r from "./cartList.js";
-t();
-const o = new r("so-cart", document.querySelector(".product-list"));
-o.init();
+import{loadHeaderFooter as o}from"./utils.js";import r from"./cartList.js";o();const t=new r("so-cart",document.querySelector(".product-list"));t.init(),t.total>0&&document.querySelector(".list-footer").classList.remove("hide");
