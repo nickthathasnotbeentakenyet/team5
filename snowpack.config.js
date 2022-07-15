@@ -3,11 +3,11 @@ module.exports = {
     // ['@snowpack/plugin-sass' ],
   ],
   mount: {
-    src: "/wdd330/team5/",
+    src: "/",
   },
   buildOptions: {
     out: "build",
-    baseUrl: "/sleepoutside/build/",
+    baseUrl: "/team5/build/",
     clean: true,
     htmlFragments: true,
   },
